@@ -1,8 +1,3 @@
-// Copyright 2018 Duarte Silveira
-// Copyright 2017 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:share/receive_share_state.dart';
@@ -30,6 +25,7 @@ class DemoAppState extends ReceiveShareState<DemoApp> {
 
   @override
   Widget build(BuildContext context) {
+    final _key = GlobalKey();
 	enableShareReceiving();
     return new MaterialApp(
       title: 'Share Plugin Demo',
@@ -55,7 +51,7 @@ class DemoAppState extends ReceiveShareState<DemoApp> {
                 const Padding(padding: const EdgeInsets.only(top: 24.0)),
                 new Builder(
                   builder: (BuildContext context) {
-                    return new RaisedButton(
+                    return new ElevatedButton(
                       child: const Text('Share'),
                       onPressed: _text.isEmpty
                           ? null
@@ -67,7 +63,7 @@ class DemoAppState extends ReceiveShareState<DemoApp> {
                               // RenderObject in its descendent tree when it's not
                               // a RenderObjectWidget. The RaisedButton's RenderObject
                               // has its position and size after it's built.
-                              final RenderBox box = context.findRenderObject();
+                              final  box = _key.currentContext!.findRenderObject() as RenderBox;
                               Share.plainText(text: _text).share(
                                   sharePositionOrigin:
                                       box.localToGlobal(Offset.zero) &
@@ -81,7 +77,7 @@ class DemoAppState extends ReceiveShareState<DemoApp> {
                   },
                 ),
                 const Padding(padding: const EdgeInsets.only(top: 24.0)),
-                new RaisedButton(
+                new ElevatedButton(
                   child: const Text('Toggle share receiving'),
                   onPressed: () {
                           if (!shareReceiveEnabled) {

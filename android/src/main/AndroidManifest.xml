@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="io.flutter.plugins.share">
     <application>
-        <activity android:name="io.flutter.plugins.share.ShareReceiverActivityWorker"
+        <activity android:name="${applicationName}"
+            android:icon="@mipmap/ic_launcher"
           android:theme="@style/Theme.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
